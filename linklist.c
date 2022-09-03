@@ -25,8 +25,8 @@ int main()
     int choice;
     while(1)
     {
-        printf("\nPress 1 to insert node at the begining of the list\npress 2 to insert at end\npress 3 for insert at any position\npress 4 to display\npress 5 to exit from the program:");
-        printf("\n::");
+        p"\nPress 1 to insert node at the begining of the list\npress 2 to insert at end\npress 3 for insert at any position\npress 4 to display\npress 5 to exit from the program:");
+        printf("\n:rintf(:");
         scanf("%d",&choice);
         if(choice==1)
         {
