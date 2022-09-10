@@ -36,20 +36,24 @@ void lastinsert(){
        krish->link=NULL;
        printf("Element inserted successfully\n");         
 }
-void anyinsert(){ //not ready
+void anyinsert(){
   int pos=0,element,i;
    printf("Enter the position to insert = ");
    scanf("%d",&pos);
    printf("Enter the value: ");
    scanf("%d",&element);
    nd *krish = createNode(element);
-   nd *temp;
+   nd *temp; 
+   nd *kidKrish; //creat a pointer which is run in case (n-2)
+   kidKrish = head;
    temp = head;
-   for(i=0; i<pos-1; i++){
+   for(i=0; i<pos-2; i++){
      temp = temp->link;
+     kidKrish = kidKrish->link;
    }
-   temp->link = krish;
-   krish->link = NULL; //this is not null, it is the next block address
+   temp = temp->link;  //read time complexity
+   kidKrish->link = krish;
+   krish->link = temp;
 }
 void begdelete(){
     int element;
@@ -84,10 +88,11 @@ void lastdelete(){
         temp=temp->link;
       }
       temp->link = NULL; //direct linkedlist cutoff statement
+      //temp = temp->link;
       printf("Element delete successfully\n");
     }
 }
-void anydelete(){
+void anydelete(){ //not ready
     printf(" Not ready\n");
 }
 void alldelete(){
@@ -105,12 +110,12 @@ void display(){
     if(temp == NULL){  
         printf("  Empty\n");  
     }else{
-        printf(" Start->");
+        printf(" Start->"); //this statement given for styling the output
         while(temp!=NULL){  
             printf("%d->",temp->data);  
             temp = temp->link;  
         }  
-        printf("End\n");
+        printf("End\n"); //this statement given for styling the output
     }  
 }  
 void choiceHolder(){
@@ -118,7 +123,7 @@ void choiceHolder(){
     while(1){
         printf("\nEnter your choice = ");        
         scanf("%d",&choice);
-        if(choice == 0){
+        if(choice == 0){ //hidden choice
             alldelete();  
         }else if(choice == 1){
         	beginsert();
@@ -139,7 +144,7 @@ void choiceHolder(){
             break;//or return 0;
         }else{
             printf("Invalid choice taken\nTry again!\n");
-            choiceHolder();
+            choiceHolder(); //This line written to classic return statement, when while(choice != 8);
         }
     }
 }
@@ -150,9 +155,9 @@ int main(){
       printf("Press 5 to delete at beginning position\nPress 6 to delete at last position\nPress 7 to delete at any position\n");
       printf("Press 8 to Quit\n");  
       printf("----------------------------------------------\n");
-      choiceHolder();
+      choiceHolder(); //Only one function call in main
         
-return 0;
+ return 0;
 }  
 
 
