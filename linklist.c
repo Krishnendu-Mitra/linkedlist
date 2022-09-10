@@ -37,23 +37,35 @@ void lastinsert(){
        printf("Element inserted successfully\n");         
 }
 void anyinsert(){
-  int pos=0,element,i;
+  int pos=0,element,i,cache=1;
    printf("Enter the position to insert = ");
-   scanf("%d",&pos);
-   printf("Enter the value: ");
-   scanf("%d",&element);
-   nd *krish = createNode(element);
+   scanf("%d",&pos); 
+   //check the pos is valid
    nd *temp; 
-   nd *kidKrish; //creat a pointer which is run in case (n-2)
-   kidKrish = head;
    temp = head;
-   for(i=0; i<pos-2; i++){
-     temp = temp->link;
-     kidKrish = kidKrish->link;
-   }
-   temp = temp->link;  //read time complexity
-   kidKrish->link = krish;
-   krish->link = temp;
+   while(temp->link!=NULL){ //this loop run for only collect lenth value
+        cache = cache + 1;
+        temp=temp->link;
+      }
+      temp=head;
+    if(pos>=cache || pos<=0){
+        printf("position is not valid!\n");
+    }else{
+    //if valid then do this=>
+    printf("Enter the value: ");
+    scanf("%d",&element);
+    nd *krish = createNode(element);
+    nd *kidKrish; //creat a pointer which is run in case (n-2)
+    kidKrish = head;
+    temp = head;
+    for(i=0; i<pos-2; i++){
+      temp = temp->link;
+      kidKrish = kidKrish->link;
+    }
+    temp = temp->link;  //read time complexity
+    kidKrish->link = krish;
+    krish->link = temp;
+  }
 }
 void begdelete(){
     int element;
