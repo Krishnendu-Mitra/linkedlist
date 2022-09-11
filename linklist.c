@@ -6,7 +6,7 @@ typedef struct node{
    struct node *link;  
 }nd;
 nd *head;  
-nd *createNode(int data){
+nd *createNode(int data){ //this function is most importent for this program
 	nd *temp;
 	temp = (nd*)malloc(sizeof(nd));
 	temp->data = data;  
@@ -18,7 +18,7 @@ void beginsert(){
        printf("Enter the value: ");  
        scanf("%d",&element);  
        nd *krish = createNode(element);
-       krish->link=head;
+       krish->link=head; //just connect the node via head
        head=krish;
        printf("Element inserted successfully\n");         
 }  
@@ -29,7 +29,7 @@ void lastinsert(){
        nd *krish = createNode(element);
        nd *temp;
        temp = head;
-       while(temp->link!=NULL){
+       while(temp->link!=NULL){ //this loop shift my index at the last position
        	temp=temp->link;
        }
        temp->link=krish;
@@ -37,46 +37,46 @@ void lastinsert(){
        printf("Element inserted successfully\n");         
 }
 void anyinsert(){
-  int pos=0,element,i,cache=1;
-   printf("Enter the position to insert = ");
-   scanf("%d",&pos); 
-   //check the pos is valid
-   nd *temp; 
-   temp = head;
-   while(temp->link!=NULL){ //this loop run for only collect lenth value
-        cache = cache + 1;
-        temp=temp->link;
-      }
-      temp=head;
-    if(pos>=cache || pos<=0){
-        printf("position is not valid!\n");
-    }else{
-    //if valid then do this=>
-    printf("Enter the value: ");
-    scanf("%d",&element);
-    nd *krish = createNode(element);
-    nd *kidKrish; //creat a pointer which is run in case (n-2)
-    kidKrish = head;
+   int pos=0,element,i,cache=1;
+    printf("Enter the position to insert = ");
+    scanf("%d",&pos); 
+    //check the pos is valid or not
+    nd *temp; 
     temp = head;
-    for(i=0; i<pos-2; i++){
+    while(temp->link!=NULL){ //this loop run for only collect lenth value of the list
+       cache = cache + 1;
+       temp=temp->link;
+    } //lenth of list is cache
+    temp=head;
+    if(pos>=cache || pos<=0){
+      printf("Sorry,position is not valid!\n");
+    }else{
+      printf("Enter the value: ");
+      scanf("%d",&element);
+      nd *krish = createNode(element);
+      nd *kidKrish; //creat a pointer which is run in case (n-2)
+      kidKrish = head;
+      temp = head;
+      for(i=0; i<pos-2; i++){
+        temp = temp->link;
+        kidKrish = kidKrish->link;
+      }
       temp = temp->link;
-      kidKrish = kidKrish->link;
+      kidKrish->link = krish;
+      krish->link = temp;
+      printf("Element insert successfully\n");
     }
-    temp = temp->link;  //read time complexity
-    kidKrish->link = krish;
-    krish->link = temp;
-  }
 }
 void begdelete(){
     int element;
     nd *temp;
     if(head == NULL){
         printf(" Empty\n");
-    }else{
+    }else{ //if the list is not empty then
         element = head->data;
         temp = head;
         head = head->link;
-        free(temp);
+        free(temp); //for better use
         printf("Element delete successfully\n");
     }
 }
@@ -87,7 +87,7 @@ void lastdelete(){
     if(head == NULL){
         printf(" Empty\n");
     }else{
-      while(temp->link!=NULL){ //this loop run for only collect lenth value
+      while(temp->link!=NULL){ //this loop run for only collect lenth value of the list
         cache = cache + 1;
         temp=temp->link;
       } //lenth of list is cache
@@ -112,7 +112,7 @@ void alldelete(){
     nd *temp;
     temp = head;
     while(head != NULL){
-      lastdelete();
+      lastdelete(); //call the pre def function to save time and space
     }
 }
 void display(){  
@@ -160,14 +160,14 @@ void choiceHolder(){
         }
     }
 }
-int main(){  
+int main(){  //the main function display the menu box items
       printf("\n\t\tMenu\n----------------------------------------------\n");
       printf("Press 1 to insert at beginning position\nPress 2 to insert at last position\nPress 3 to insert at any position\n");
       printf("Press 4 to Display the list\n");
       printf("Press 5 to delete at beginning position\nPress 6 to delete at last position\nPress 7 to delete at any position\n");
       printf("Press 8 to Quit\n");  
       printf("----------------------------------------------\n");
-      choiceHolder(); //Only one function call in main
+      choiceHolder(); //Only one function call by main
         
  return 0;
 }  
