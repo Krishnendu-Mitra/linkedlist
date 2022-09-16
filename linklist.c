@@ -23,8 +23,8 @@ void beginsert(){
        printf("Element inserted successfully\n");         
 }  
 void lastinsert(){ 
-	int element;
-	   printf("Enter the value: ");  
+   int element;
+       printf("Enter the value: ");  
        scanf("%d",&element);  
        nd *krish = createNode(element);
        nd *temp;
