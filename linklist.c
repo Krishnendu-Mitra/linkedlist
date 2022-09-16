@@ -105,7 +105,32 @@ void lastdelete(){
     }
 }
 void anydelete(){ //not ready
-    printf(" Not ready\n");
+    int i,pos=0,cache=1;
+    nd* temp = head;
+    printf("Enter the position to delete = ");
+    scanf("%d",&pos); 
+    //check the pos is valid or not
+    while(temp->link!=NULL){ //this loop run for only collect lenth value of the list
+       cache = cache + 1;
+       temp=temp->link;
+    } //lenth of list is cache
+    temp=head;
+    if(pos>=cache || pos<=0){
+      printf("Sorry,position is not valid!\n");
+    }else{
+        if(pos == 1){
+            begdelete(); //for first position
+        }else{ 
+            for (i=0; i<pos-2; i++){
+                temp = temp->link; 
+            }
+            nd* krish = temp->link; //creat a new pointer
+            temp->link = temp->link->link;
+            krish->link = NULL; 
+            free(krish);
+            printf("Element delete successfully\n");
+        }
+    }
 }
 void alldelete(){
     int element;
