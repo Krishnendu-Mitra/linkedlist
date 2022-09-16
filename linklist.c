@@ -104,7 +104,7 @@ void lastdelete(){
       printf("Element delete successfully\n");
     }
 }
-void anydelete(){ //not ready
+void anydelete(){
     int i,pos=0,cache=1;
     nd* temp = head;
     printf("Enter the position to delete = ");
